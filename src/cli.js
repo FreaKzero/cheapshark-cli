@@ -1,4 +1,4 @@
-const meow = require('meow');
+const meow = require('meow')
 
 const cli = meow(`
 Usage
@@ -12,7 +12,7 @@ Options
 Example
   $ cheapshark -n 3 -s title -o asc
 `, {
-	flags: {
+  flags: {
     num: {
       type: 'string',
       alias: 'n'
@@ -21,11 +21,11 @@ Example
       type: 'string',
       alias: 'o'
     },
-		sort: {
-			type: 'string',
-			alias: 's'
-		}
-	}
-});
+    sort: {
+      type: 'string',
+      alias: 's'
+    }
+  }
+})
 
-module.exports = cli;
+module.exports = cli
