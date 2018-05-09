@@ -13,7 +13,6 @@ getSort = (sort, orderStr) => {
       title: (a,b) => (a.internalName > b.internalName) ? -1 : (a.internalName < b.internalName) ? 1 : 0
     }
   };
-  console.log(order, sort);
   return sorts[order][sort] || sorts[order].rating;
 };
 
