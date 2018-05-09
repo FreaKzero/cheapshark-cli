@@ -1,8 +1,28 @@
 {
+  "name": "cheapshark-cli",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "cheapshark",
+    "terminal",
+    "NodeJS"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:freakzero/cheapshark-cli.git"
+  },
+  "bin": {
+    "cheapshark": "./index.js"
+  },
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "author": "FreaKzero",
+  "license": "MIT",
   "dependencies": {
-    "chalk": "^2.4.1",
-    "meow": "^5.0.0",
-    "ora": "^2.1.0",
-    "request": "^2.85.0"
+    "chalk": "2.4.1",
+    "meow": "5.0.0",
+    "ora": "2.1.0",
+    "request": "2.85.0"
   }
 }

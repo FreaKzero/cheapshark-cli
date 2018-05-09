@@ -41,7 +41,7 @@ const format = (data, cli) => {
   
   return `
   ${chalk.bold.cyan(title)} 
-  ${chalk.grey('Price:')}      ${chalk.bold.cyan(salePrice + '€')} € (${normalPrice} €)
+  ${chalk.grey('Price:')}      ${chalk.bold.cyan(salePrice + ' €')} (${normalPrice} €)
   ${chalk.grey('Rating:')}     ${colorRating(steamRatingText)} (${steamRatingCount} Ratings | ${steamRatingPercent}%)
   ${chalk.grey('MetaCritic:')} ${colorCritic(metacriticScore)} http://metacritic.com${metacriticLink}
   http://www.cheapshark.com/redirect?dealID=${dealID}

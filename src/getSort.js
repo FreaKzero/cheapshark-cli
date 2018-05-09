@@ -1,5 +1,5 @@
 getSort = (sort, orderStr) => {
-  const order = ['asc', 'desc'].indexOf(orderStr) < 0 ? 'desc' : orderStr;
+  const order = ['asc', 'desc'].indexOf(orderStr) < 0 ? 'asc' : orderStr;
 
   const sorts = {
     asc: {
@@ -14,7 +14,7 @@ getSort = (sort, orderStr) => {
     }
   };
   console.log(order, sort);
-  return sorts[order][sort] || sorts[order].price;
+  return sorts[order][sort] || sorts[order].rating;
 };
 
 module.exports = getSort

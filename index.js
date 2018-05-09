@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const format = require('./src/format');
 const cli = require('./src/cli');
 const request = require('request');

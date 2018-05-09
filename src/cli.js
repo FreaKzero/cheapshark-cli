@@ -6,8 +6,8 @@ Usage
 
 Options
   --num,   -n  Number of Items to show          default: 30
-  --sort   -s  Sort by: [ price|rating|title ]  default: price
-  --order  -o  Order of items [ asc|desc ]      default: desc
+  --sort   -s  Sort by: [ price | rating | title ]  default: rating
+  --order  -o  Order of items: [ asc | desc ]      default: asc
 
 Example
   $ cheapshark -n 3 -s title -o asc
