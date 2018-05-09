@@ -1,0 +1,15 @@
+{
+  "dotenv": ".env",
+  "filterminor": ["feature", "module", "notification"],
+  "filtermajor": ["breaking", "deprecate", "remove"],
+  "logfilter": ".*#",
+   "githost": {
+    "provider": "github",
+    "repo": "freakzero/cheapshark-cli",
+    "release": {
+      "draft": false
+    }
+  },
+  "notify": true,
+  "npmpublish": true
+}
