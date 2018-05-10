@@ -7,7 +7,7 @@ Usage
   --list-stores     List available stores
 
 Options
-  --num,        -n  Number of Items to show                default: 60
+  --num         -n  Number of Items to show                default: 60
   --sort        -s  [price,rating,title,deal,date]         default: date
   --order       -o  Order of items: [asc,desc]             default: asc
   --store       -b  Only view deals from a specific store  default: all
