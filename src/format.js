@@ -31,11 +31,17 @@ const format = (data, cli) => {
     if (parseFloat(rate) > 7.5) return chalk.bold.yellow(`${rate} | ${parseInt(savings)}% Savings`)
     return chalk.bold.grey(`${rate} | ${parseInt(savings)}% Savings`)
   }
-  return data.sort(getSort(cli.flags.sort, cli.flags.order)).map(data => {
+
+  const deals = cli.flags.store
+    ? data.filter(item => item.store.toUpperCase() === cli.flags.store.toUpperCase())
+    : data
+
+  return deals.sort(getSort(cli.flags.sort, cli.flags.order)).map(data => {
     const {
       dealID,
       dealRating,
       title,
+      store,
       salePrice,
       normalPrice,
       lastChange,
@@ -48,7 +54,7 @@ const format = (data, cli) => {
     } = data
 
     return `
-  ${chalk.bold.cyan(title)}
+  ${chalk.bold.cyanBright(title)} ${chalk.black.bgCyan(` ${store} `)} 
   ${chalk.grey('Price:')}      ${chalk.bold.cyan(salePrice + ' €')} (${normalPrice} €)
   ${chalk.grey('Dealrate:')}   ${colorPriceRate(dealRating, savings)}
   ${chalk.grey('Rating:')}     ${colorRating(steamRatingText)} (${steamRatingCount} Ratings | ${steamRatingPercent}%) 
