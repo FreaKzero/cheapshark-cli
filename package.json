@@ -25,7 +25,8 @@
     "meow": "5.0.0",
     "moment": "^2.22.1",
     "ora": "2.1.0",
-    "request": "2.85.0"
+    "request": "2.85.0",
+    "term-size": "^1.2.0"
   },
   "devDependencies": {
     "eslint-config-standard": "^11.0.0",

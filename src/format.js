@@ -36,7 +36,7 @@ const format = (data, cli) => {
     ? data.filter(item => item.store.toUpperCase() === cli.flags.store.toUpperCase())
     : data
 
-  return deals.sort(getSort(cli.flags.sort, cli.flags.order)).map(data => {
+  return deals.sort(getSort(cli.flags.sort, cli.flags.order)).map((data, idx) => {
     const {
       dealID,
       dealRating,
@@ -54,14 +54,13 @@ const format = (data, cli) => {
     } = data
 
     return `
-  ${chalk.bold.cyanBright(title)} ${chalk.black.bgCyan(` ${store} `)} 
-  ${chalk.grey('Price:')}      ${chalk.bold.cyan(salePrice + ' €')} (${normalPrice} €)
-  ${chalk.grey('Dealrate:')}   ${colorPriceRate(dealRating, savings)}
-  ${chalk.grey('Rating:')}     ${colorRating(steamRatingText)} (${steamRatingCount} Ratings | ${steamRatingPercent}%) 
-  ${chalk.grey('Offered:')}    ${moment.unix(lastChange).format('ddd, D. MMMM')}
-  ${chalk.grey('MetaCritic:')} ${colorCritic(metacriticScore)} http://metacritic.com${metacriticLink}
-  http://www.cheapshark.com/redirect?dealID=${dealID}
-  `
+  ${chalk.bold.cyanBright(`${idx + 1}. ${title}`)} ${chalk.black.bgCyan(` ${store} `)} 
+    ${chalk.grey('Price:')}      ${chalk.bold.cyan(salePrice + ' €')} (${normalPrice} €)
+    ${chalk.grey('Dealrate:')}   ${colorPriceRate(dealRating, savings)}
+    ${chalk.grey('Rating:')}     ${colorRating(steamRatingText)} (${steamRatingCount} Ratings | ${steamRatingPercent}%) 
+    ${chalk.grey('Offered:')}    ${moment.unix(lastChange).format('ddd, D. MMMM')}
+    ${chalk.grey('MetaCritic:')} ${colorCritic(metacriticScore)} http://metacritic.com${metacriticLink}
+    http://www.cheapshark.com/redirect?dealID=${dealID}`
   })
 }
 

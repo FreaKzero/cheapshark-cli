@@ -37,6 +37,7 @@ if (cli.flags.listStores) {
     }
   })
 }
+
 request('http://www.cheapshark.com/api/1.0/stores', (error, response, stores) => {
   if (error) {
     spinStores.fail(error.message)
@@ -65,9 +66,12 @@ request('http://www.cheapshark.com/api/1.0/stores', (error, response, stores) =>
         ? format(data, cli).slice(0, cli.flags.num)
         : format(data, cli)
 
-      list.forEach(item => {
-        console.log(item)
-      })
+      if (cli.flags.page) {
+        const paging = require('./src/paging')
+        paging(list)
+      } else {
+        console.log(list.join('\n'))
+      }
     } catch (e) {
       console.log(e)
     }
