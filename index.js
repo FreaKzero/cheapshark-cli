@@ -66,6 +66,11 @@ request('http://www.cheapshark.com/api/1.0/stores', (error, response, stores) =>
         ? format(data, cli).slice(0, cli.flags.num)
         : format(data, cli)
 
+      if (!list.length) {
+        ora('Sorry no deals found :(').fail()
+        process.exit()
+      }
+
       if (cli.flags.page) {
         const paging = require('./src/paging')
         paging(list)
