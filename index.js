@@ -1,11 +1,42 @@
 #! /usr/bin/env node
 
+const Table = require('cli-table')
 const format = require('./src/format')
 const cli = require('./src/cli')
 const request = require('request')
 const ora = require('ora')
 
 const spinStores = ora('Fetching stores from cheapshark').start()
+
+if (cli.flags.listStores) {
+  request('http://www.cheapshark.com/api/1.0/stores', (error, response, stores) => {
+    if (error) {
+      spinStores.fail(error.message)
+      process.exit()
+    }
+
+    spinStores.succeed()
+
+    try {
+      const data = JSON.parse(stores).filter(store => store.isActive === 1)
+      const table = new Table({
+        head: ['StoreID', 'Store Name']
+      })
+
+      data.map(store => {
+        table.push(
+          [store.storeID, store.storeName]
+        )
+      })
+
+      console.log(table.toString())
+      process.exit()
+    } catch (e) {
+      console.log(e)
+      process.exit()
+    }
+  })
+}
 request('http://www.cheapshark.com/api/1.0/stores', (error, response, stores) => {
   if (error) {
     spinStores.fail(error.message)
