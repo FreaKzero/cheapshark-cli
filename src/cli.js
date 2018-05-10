@@ -6,7 +6,7 @@ Usage
 
 Options
   --num,   -n  Number of Items to show          default: 30
-  --sort   -s  Sort by: [ price | rating | title ]  default: rating
+  --sort   -s  Sort by: [ price | rating | title | deal]  default: deal
   --order  -o  Order of items: [ asc | desc ]      default: asc
 
 Example

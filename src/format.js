@@ -20,14 +20,20 @@ const format = (data, cli) => {
   }
 
   const colorCritic = (critic) => {
-    if (parseInt(critic) > 70) return chalk.bold.green(`(${critic} Points)`)
-    if (parseInt(critic) > 55) return chalk.bold.yellow(`(${critic} Points)`)
+    if (parseFloat(critic) > 70) return chalk.bold.green(`(${critic} Points)`)
+    if (parseFloat(critic) > 55) return chalk.bold.yellow(`(${critic} Points)`)
     return chalk.bold.red(`(${critic} Points)`)
   }
 
+  const colorPriceRate = (rate) => {
+    if (parseFloat(rate) > 9) return chalk.bold.green(`${rate}`)
+    if (parseFloat(rate) > 7.5) return chalk.bold.yellow(`${rate}`)
+    return chalk.bold.grey(`${rate}`)
+  }
   return data.sort(getSort(cli.flags.sort, cli.flags.order)).map(data => {
     const {
       dealID,
+      dealRating,
       title,
       salePrice,
       normalPrice,
@@ -41,7 +47,8 @@ const format = (data, cli) => {
     return `
   ${chalk.bold.cyan(title)} 
   ${chalk.grey('Price:')}      ${chalk.bold.cyan(salePrice + ' €')} (${normalPrice} €)
-  ${chalk.grey('Rating:')}     ${colorRating(steamRatingText)} (${steamRatingCount} Ratings | ${steamRatingPercent}%)
+  ${chalk.grey('Dealrate:')}   ${colorPriceRate(dealRating)}
+  ${chalk.grey('Rating:')}     ${colorRating(steamRatingText)} (${steamRatingCount} Ratings | ${steamRatingPercent}%) 
   ${chalk.grey('MetaCritic:')} ${colorCritic(metacriticScore)} http://metacritic.com${metacriticLink}
   http://www.cheapshark.com/redirect?dealID=${dealID}
   `
