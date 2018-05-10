@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 const getSort = require('./getSort')
+const moment = require('moment')
 
 const format = (data, cli) => {
   const ratingGreen = [
@@ -37,6 +38,7 @@ const format = (data, cli) => {
       title,
       salePrice,
       normalPrice,
+      lastChange,
       metacriticLink,
       metacriticScore,
       steamRatingText,
@@ -46,10 +48,11 @@ const format = (data, cli) => {
     } = data
 
     return `
-  ${chalk.bold.cyan(title)} 
+  ${chalk.bold.cyan(title)}
   ${chalk.grey('Price:')}      ${chalk.bold.cyan(salePrice + ' €')} (${normalPrice} €)
   ${chalk.grey('Dealrate:')}   ${colorPriceRate(dealRating, savings)}
   ${chalk.grey('Rating:')}     ${colorRating(steamRatingText)} (${steamRatingCount} Ratings | ${steamRatingPercent}%) 
+  ${chalk.grey('Offered:')}    ${moment.unix(lastChange).format('ddd, D. MMMM')}
   ${chalk.grey('MetaCritic:')} ${colorCritic(metacriticScore)} http://metacritic.com${metacriticLink}
   http://www.cheapshark.com/redirect?dealID=${dealID}
   `
