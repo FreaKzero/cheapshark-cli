@@ -32,11 +32,7 @@ const format = (data, cli) => {
     return chalk.bold.grey(`${rate} | ${parseInt(savings)}% Savings`)
   }
 
-  const deals = cli.flags.store
-    ? data.filter(item => item.store.toUpperCase() === cli.flags.store.toUpperCase())
-    : data
-
-  return deals.sort(getSort(cli.flags.sort, cli.flags.order)).map((data, idx) => {
+  return data.sort(getSort(cli.flags.sort, cli.flags.order)).map((data, idx) => {
     const {
       dealID,
       dealRating,

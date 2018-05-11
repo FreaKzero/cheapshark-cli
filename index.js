@@ -44,9 +44,18 @@ request('http://www.cheapshark.com/api/1.0/stores', (error, response, stores) =>
     process.exit()
   }
   spinStores.succeed()
+  
   const spinDeals = ora('Fetching deals from cheapshark').start()
+  const storesJson = JSON.parse(stores)
+  const storeID = cli.flags.store
+    ? storesJson.find(store => store.storeName.toUpperCase() === cli.flags.store.toUpperCase()).storeID
+    : null
 
-  request('http://www.cheapshark.com/api/1.0/deals', (error, response, deals) => {
+  const storeQuery = storeID
+    ? `&storeID=${storeID}`
+    : null
+
+  request(`http://www.cheapshark.com/api/1.0/deals?onSale=1${storeQuery}`, (error, response, deals) => {
     if (error) {
       spinDeals.fail(error.message)
       process.exit()
@@ -55,7 +64,6 @@ request('http://www.cheapshark.com/api/1.0/stores', (error, response, stores) =>
 
     try {
       const dealsJson = JSON.parse(deals)
-      const storesJson = JSON.parse(stores)
 
       const data = dealsJson.map(item => ({
         ...item,
